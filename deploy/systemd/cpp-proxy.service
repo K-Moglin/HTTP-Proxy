@@ -1,0 +1,19 @@
+[Unit]
+Description=C++ HTTP Proxy
+After=network.target
+
+[Service]
+ExecStart=/opt/cpp-proxy/cpp_proxy --listen 0.0.0.0 --port 8080 --workers 8 --cache-mb 256
+WorkingDirectory=/opt/cpp-proxy
+Restart=always
+RestartSec=2
+User=www-data
+Group=www-data
+# Hardening (optional)
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=full
+LimitNOFILE=65535
+
+[Install]
+WantedBy=multi-user.target
